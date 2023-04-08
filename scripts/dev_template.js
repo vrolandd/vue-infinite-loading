@@ -6,7 +6,7 @@ module.exports = `
   <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1, initial-scale=1, user-scalable=no, shrink-to-fit=no">
   <title>Vue-infinite-loading Testing</title>
   <script src="../node_modules/vue/dist/vue.js"></script>
-  <script src="../vue-infinite-loading.js"></script>
+  <script src="./vue-infinite-loading.js"></script>
   <style>
     body{
       margin: 0;

@@ -6,7 +6,7 @@
 import Vue, { VNode, Component, PluginFunction } from 'vue';
 
 export type SpinnerType = 'default' | 'bubbles' | 'circles' | 'spiral' | 'waveDots';
-export type DirectionType = 'top' | 'bottom';
+export type DirectionType = 'top' | 'bottom' | 'reverse-top';
 
 export interface Slots {
   spinner: VNode[];

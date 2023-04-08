@@ -4,7 +4,7 @@
       class="infinite-status-prompt"
       v-show="isShowSpinner"
       :style="slotStyles.spinner">
-      <slot name="spinner" v-bind="{ isFirstLoad }">
+      <slot name="spinner">
         <spinner :spinner="spinner" />
       </slot>
     </div>
@@ -164,7 +164,7 @@ export default {
     this.$on('$InfiniteLoading:loaded', (ev) => {
       this.isFirstLoad = false;
 
-      if (this.direction === 'top') {
+      if (this.direction === 'top' || this.direction === 'reverse-top') {
         // wait for DOM updated
         this.$nextTick(() => {
           scrollBarStorage.restore(this.scrollParent);
@@ -263,7 +263,7 @@ export default {
       ) {
         this.status = STATUS.LOADING;
 
-        if (this.direction === 'top') {
+        if (this.direction === 'top' || this.direction === 'reverse-top') {
           // wait for spinner display
           this.$nextTick(() => {
             scrollBarStorage.save(this.scrollParent);
@@ -296,6 +296,13 @@ export default {
         distance = typeof this.scrollParent.scrollTop === 'number'
           ? this.scrollParent.scrollTop
           : this.scrollParent.pageYOffset;
+      } else if (this.direction === 'reverse-top') {
+        const infiniteElmOffsetTopFromBottom = this.$el.getBoundingClientRect().top;
+        const scrollElmOffsetTopFromBottom = this.scrollParent === window
+          ? window.innerHeight
+          : this.scrollParent.getBoundingClientRect().top;
+
+        distance = scrollElmOffsetTopFromBottom - infiniteElmOffsetTopFromBottom;
       } else {
         const infiniteElmOffsetTopFromBottom = this.$el.getBoundingClientRect().top;
         const scrollElmOffsetTopFromBottom = this.scrollParent === window
@@ -344,11 +351,9 @@ export default {
 </script>
 <style lang="less" scoped>
 @deep: ~'>>>';
-
 .infinite-loading-container {
   clear: both;
   text-align: center;
-
   @{deep} *[class^=loading-] {
     @size: 28px;
     display: inline-block;
@@ -360,7 +365,6 @@ export default {
     border-radius: 50%;
   }
 }
-
 .btn-try-infinite {
   margin-top: 5px;
   padding: 5px 10px;
@@ -372,7 +376,6 @@ export default {
   border-radius: 3px;
   outline: none;
   cursor: pointer;
-
   &:not(:active):hover {
     opacity: 0.8;
   }
