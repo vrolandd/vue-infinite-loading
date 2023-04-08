@@ -198,6 +198,7 @@ ___
 Thats's all for now,\
 you can see https://peachscript.github.io/vue-infinite-loading/ for more examples and options.
 
+---
 
 # **License**
 
