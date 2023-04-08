@@ -160,9 +160,8 @@ export default {
     </div>
 </template>
 ```
-The `force-use-infinite-wrapper` must have a valid and unique **element selector**, like in CSS.\
-
-## Examples
+The `force-use-infinite-wrapper` must have a valid and unique **element selector**, like in CSS:
+### **Examples**
 ### Selecting an element by class
 ```html
 <div class="scrollContainer">
