@@ -164,7 +164,7 @@ export default {
     this.$on('$InfiniteLoading:loaded', (ev) => {
       this.isFirstLoad = false;
 
-      if (this.direction === 'top' || this.direction === 'reverse-top') {
+      if (this.direction === 'top') {
         // wait for DOM updated
         this.$nextTick(() => {
           scrollBarStorage.restore(this.scrollParent);
@@ -263,7 +263,7 @@ export default {
       ) {
         this.status = STATUS.LOADING;
 
-        if (this.direction === 'top' || this.direction === 'reverse-top') {
+        if (this.direction === 'top') {
           // wait for spinner display
           this.$nextTick(() => {
             scrollBarStorage.save(this.scrollParent);
